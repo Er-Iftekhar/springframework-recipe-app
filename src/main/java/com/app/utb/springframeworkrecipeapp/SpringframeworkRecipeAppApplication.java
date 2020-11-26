@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringframeworkRecipeAppApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringframeworkRecipeAppApplication.class, args);
+        System.out.println("Hello ");
     }
 
 }
