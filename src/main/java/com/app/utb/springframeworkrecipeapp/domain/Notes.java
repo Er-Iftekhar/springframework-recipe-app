@@ -10,6 +10,7 @@ public class Notes {
 
     @OneToOne
     private Recipe recipe;
+    @Lob
     private String recipeNotes;
 
     public Long getId() {
