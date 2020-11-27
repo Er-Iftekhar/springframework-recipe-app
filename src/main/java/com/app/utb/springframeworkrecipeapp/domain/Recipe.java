@@ -37,7 +37,6 @@ public class Recipe {
 
 
     @OneToMany(
-            targetEntity = Ingredient.class,
             mappedBy = "recipe",
             cascade = CascadeType.ALL
     )
@@ -120,14 +119,23 @@ public class Recipe {
     }
 
     public void setNotes(Notes notes) {
+
         this.notes = notes;
+        notes.setRecipe(this);
     }
 
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    public Recipe addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
     public void setIngredients(Set<Ingredient> ingredients) {
+       ingredients.forEach(ingredient -> ingredient.setRecipe(this));
         this.ingredients = ingredients;
     }
 
@@ -145,5 +153,6 @@ public class Recipe {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+        categories.forEach(category -> category.getRecipes().add(this));
     }
 }
